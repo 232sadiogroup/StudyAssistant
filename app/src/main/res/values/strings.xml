@@ -25,8 +25,6 @@
     <string name="week">Week</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
-    <string name="school_website">School website</string>
-    <string name="school_website_snackbar">Please, set URL of your school website in settings.</string>
 
     <string name="add_subject">Add subject</string>
     <string name="edit_subject">Edit subject</string>
@@ -59,15 +57,6 @@
     <string name="add_homework">Add homework</string>
     <string name="deadline_snackbar">"Deadline field can not be empty!</string>
     <string name="date">Date</string>
-
-    <!-- Notes Activity strings -->
-    <string name="notes">Notes</string>
-    <string name="title_dialog">Title:</string>
-    <string name="add_note">Add note</string>
-    <string name="edit_note">Edit note</string>
-    <string name="title_error">Title field can not be empty!</string>
-    <string name="title">Title</string>
-    <string name="saved">Saved</string>
 
     <!-- Teachers Activity strings -->
     <string name="teachers">Teachers</string>

@@ -4,7 +4,7 @@
     <android.support.v7.preference.SwitchPreferenceCompat
         android:defaultValue="false"
         android:key="sevendays"
-        android:icon="@drawable/baseline_view_week_black_18"
+        android:icon="@drawable/ic_view_week_black_24dp"
         android:title="@string/seven_days_of_the_week"
         android:summary="@string/sevendays_setting" />
 

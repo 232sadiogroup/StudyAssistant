@@ -9,17 +9,17 @@
         android:checkableBehavior="none">
         <item
             android:id="@+id/teachers"
-            android:icon="@drawable/baseline_people_black_18"
+            android:icon="@drawable/ic_people_black_24dp"
             android:title="@string/teachers" />
 
         <item
             android:id="@+id/homework"
-            android:icon="@drawable/baseline_book_black_18"
+            android:icon="@drawable/ic_book_black_24dp"
             android:title="@string/homeworks" />
 
         <item
             android:id="@+id/pomodoro"
-            android:icon="@drawable/baseline_access_time_black_18"
+            android:icon="@drawable/ic_access_time_black_24dp"
             android:title="@string/pomodoro" />
 
     </group>
@@ -28,7 +28,7 @@
         android:checkableBehavior="none">
         <item
             android:id="@+id/settings"
-            android:icon="@drawable/baseline_settings_black_18"
+            android:icon="@drawable/ic_settings_black_24dp"
             android:title="@string/action_settings" />
     </group>
 

@@ -211,9 +211,7 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
                 //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
 
-            //case R.id.task_change_button_main:
-                // Todo: Define on task change
-                //break;
+
 
             case R.id.timer_button_main:
                 if (currentlyRunningServiceType == POMODORO) {
