@@ -62,7 +62,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@color/white"
+            android:background="@color/window_background"
             android:text="@string/select_color"
             android:textAlignment="center"
             android:textAllCaps="true"

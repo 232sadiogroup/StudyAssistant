@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_select_all"
-        android:icon="?attr/actionModeSelectAllDrawable"
+        android:icon="@drawable/ic_select_all_white_24dp"
         android:orderInCategory="100"
         android:title="@string/edit"
         app:showAsAction="always" />

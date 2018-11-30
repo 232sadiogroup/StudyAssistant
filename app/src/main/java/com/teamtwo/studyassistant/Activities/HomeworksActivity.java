@@ -1,8 +1,10 @@
 package com.teamtwo.studyassistant.Activities;
 
 import android.content.Context;
-import android.support.design.widget.CoordinatorLayout;
+
 import android.os.Bundle;
+
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
