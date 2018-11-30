@@ -3,14 +3,20 @@
     package="com.teamtwo.studyassistant">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
+        android:name=".pomodoro.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service
+            android:name=".pomodoro.CountDownTimerService"
+            android:enabled="true"
+            android:exported="false" />
         <activity
             android:name="com.teamtwo.studyassistant.Activities.MainActivity"
             android:label="@string/app_name"
@@ -47,6 +53,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.teamtwo.studyassistant.Activities.MainActivity" />
         </activity>
+        <activity android:name=".Activities.PomodoroActivity"
+            android:parentActivityName=".Activities.MainActivity"/>
+        <activity android:name=".pomodoro.PomodoroSettingsActivity"
+            android:parentActivityName=".Activities.PomodoroActivity"/>
     </application>
 
 </manifest>

@@ -17,6 +17,11 @@
             android:icon="@drawable/baseline_book_black_18"
             android:title="@string/homeworks" />
 
+        <item
+            android:id="@+id/pomodoro"
+            android:icon="@drawable/baseline_access_time_black_18"
+            android:title="@string/pomodoro" />
+
     </group>
 
     <group android:id="@+id/menu_down"

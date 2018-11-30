@@ -170,6 +170,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent settings = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(settings);
                 return true;
+            case R.id.pomodoro:
+                Intent pomodoro = new Intent(MainActivity.this, PomodoroActivity.class);
+                startActivity(pomodoro);
+                return true;
             default:
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
