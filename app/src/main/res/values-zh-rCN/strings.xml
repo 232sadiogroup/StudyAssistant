@@ -75,12 +75,31 @@
     <string name="settings_imageview_content_desc">设置图像</string>
     <string name="start_short_break">开始短暂休息</string>
     <string name="skip_short_break">跳过短暂休息</string>
-    <string name="start_long_break">开始大休息</string>
-    <string name="skip_long_break">跳过大休息</string>
+    <string name="start_long_break">开始长休息</string>
+    <string name="skip_long_break">跳过长休息</string>
     <string name="skip_break">跳过休息</string>
     <string name="cancel_notification_toast">取消</string>
     <string name="post">职位</string>
     <string name="post_dialog">职位：</string>
     <string name="settings">设置</string>
+    <string-array name="work_duration_array">
+        <item>10秒</item>
+        <item>25分钟</item>
+        <item>30分钟</item>
+        <item>40分钟</item>
+        <item>55分钟</item>
+    </string-array>
+    <string-array name="short_break_duration_array">
+        <item>3分钟</item>
+        <item>5分钟</item>
+        <item>10分钟</item>
+        <item>15分钟</item>
+    </string-array>
+    <string-array name="long_break_duration_array">
+        <item>10分钟</item>
+        <item>15分钟</item>
+        <item>20分钟</item>
+        <item>25分钟</item>
+    </string-array>
     <string name="pomodoro_completion_alert_message">恭喜！这个番茄已经结束，是时候休息了。</string>
 </resources>
