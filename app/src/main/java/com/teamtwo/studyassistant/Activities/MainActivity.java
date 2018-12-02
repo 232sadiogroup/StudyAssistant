@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter.addFragment(new FridayFragment(), getResources().getString(R.string.friday));
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(getDayOfWeek()-1, true);//设置当前星期
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);
     }
 
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             adapter.addFragment(new SundayFragment(), getResources().getString(R.string.sunday));
             viewPager.setAdapter(adapter);
             viewPager.setCurrentItem(getDayOfWeek()-1, true);//设置当前星期
+            tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
             tabLayout.setupWithViewPager(viewPager);
         } else {
             if(adapter.getFragmentList().size() > 5) {

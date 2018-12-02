@@ -22,7 +22,7 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorColor="@color/colorAccent"
+            app:tabIndicatorColor="@color/colorPrimaryDark"
             app:tabBackground="@color/colorPrimary"
             app:tabGravity="fill"
             app:tabMode="scrollable">
