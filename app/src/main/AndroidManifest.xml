@@ -18,6 +18,7 @@
             android:name=".pomodoro.CountDownTimerService"
             android:enabled="true"
             android:exported="false" />
+
         <activity
             android:name="com.teamtwo.studyassistant.Activities.MainActivity"
             android:label="@string/app_name"
@@ -41,20 +42,23 @@
 
         <activity
             android:name="com.teamtwo.studyassistant.Activities.TeachersActivity"
-            android:label="Teachers"
+            android:label="@string/teachers"
             android:parentActivityName="com.teamtwo.studyassistant.Activities.MainActivity" />
         <activity
             android:name="com.teamtwo.studyassistant.Activities.SettingsActivity"
-            android:label="Settings"
+            android:label="@string/settings"
             android:parentActivityName="com.teamtwo.studyassistant.Activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.teamtwo.studyassistant.Activities.MainActivity" />
         </activity>
+
         <activity android:name=".Activities.PomodoroActivity"
-            android:parentActivityName=".Activities.MainActivity"/>
+            android:parentActivityName=".Activities.MainActivity"
+            android:label="@string/pomodoro"/>
         <activity android:name=".pomodoro.PomodoroSettingsActivity"
-            android:parentActivityName=".Activities.PomodoroActivity"/>
+            android:parentActivityName=".Activities.PomodoroActivity"
+            android:label="@string/settings"/>
     </application>
 
 </manifest>
