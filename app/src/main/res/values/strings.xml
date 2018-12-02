@@ -89,7 +89,7 @@
     <string name="long_break_duration_key">LONG_BREAK_DURATION</string>
     <string name="work_session_count_key">WORK_SESSION_COUNT</string>
     <string-array name="work_duration_array">
-        <item>20 minutes</item>
+        <item>10 seconds</item>
         <item>25 minutes</item>
         <item>30 minutes</item>
         <item>40 minutes</item>

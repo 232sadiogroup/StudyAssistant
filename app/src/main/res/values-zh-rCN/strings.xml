@@ -84,4 +84,23 @@
     <string name="post">职位</string>
     <string name="post_dialog">职位：</string>
     <string name="settings">设置</string>
+    <string-array name="work_duration_array">
+        <item>10秒</item>
+        <item>25分钟</item>
+        <item>30分钟</item>
+        <item>40分钟</item>
+        <item>55分钟</item>
+    </string-array>
+    <string-array name="short_break_duration_array">
+        <item>3分钟</item>
+        <item>5分钟</item>
+        <item>10分钟</item>
+        <item>15分钟</item>
+    </string-array>
+    <string-array name="long_break_duration_array">
+        <item>10分钟</item>
+        <item>15分钟</item>
+        <item>20分钟</item>
+        <item>25分钟</item>
+    </string-array>
 </resources>
