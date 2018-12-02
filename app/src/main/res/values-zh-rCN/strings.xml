@@ -20,10 +20,10 @@
     <string name="add_subject">增加科目</string>
     <string name="edit_subject">编辑科目</string>
     <string name="teacher">教师</string>
-    <string name="room">位置</string>
+    <string name="room">教室位置</string>
     <string name="time">时间</string>
     <string name="save">保存</string>
-    <string name="cancel">返回</string>
+    <string name="cancel">取消</string>
     <string name="time_to_dialog">开始时间：</string>
     <string name="time_from_dialog">结束时间：</string>
     <string name="subject_dialog">科目：</string>
@@ -34,20 +34,20 @@
     <string name="choose_time">选择时间</string>
     <string name="choose_date">选择日期</string>
     <string name="choose_color">选择颜色</string>
-    <string name="homeworks">家庭作业</string>
+    <string name="homeworks">作业</string>
     <string name="select_date">选择日期</string>
     <string name="deadline_dialog">截止日期：</string>
     <string name="deadline">截止日期</string>
     <string name="description_dialog">描述：</string>
     <string name="desctiption">描述</string>
     <string name="date_error">日期不能为空</string>
-    <string name="edit_homework">编辑家庭作业</string>
-    <string name="add_homework">添加家庭作业</string>
+    <string name="edit_homework">编辑作业</string>
+    <string name="add_homework">添加作业</string>
     <string name="deadline_snackbar">截止日期不能为空！</string>
     <string name="date">日期</string>
     <string name="teachers">教师</string>
     <string name="add_teacher">添加教师</string>
-    <string name="edit_teacher">编辑教师</string>
+    <string name="edit_teacher">编辑</string>
     <string name="name_dialog">名字：</string>
     <string name="phonenumber_dialog">电话：</string>
     <string name="email_dialog">电子邮箱：</string>
@@ -55,8 +55,6 @@
     <string name="phone_number">电话号码</string>
     <string name="email">电子邮箱：</string>
     <string name="sevendays_setting">启用一周显示七天</string>
-    <string name="school_website_setting">改变学校网站</string>
-    <string name="school_website_setting_summary">改变学校的URL</string>
     <string name="start_time">开始时间</string>
     <string name="finish_time">结束时间</string>
     <string name="pomodoro">番茄钟</string>
@@ -72,7 +70,7 @@
     <string name="change_task">修改</string>
     <string name="task_name">任务1</string>
     <string name="work_sessions_completed">已完成的番茄钟数</string>
-    <string name="cancel_pomodoro">返回番茄钟</string>
+    <string name="cancel_pomodoro">取消番茄钟</string>
     <string name="complete_imageview_content_desc">完整图像</string>
     <string name="settings_imageview_content_desc">设置图像</string>
     <string name="start_short_break">开始短暂休息</string>
@@ -80,8 +78,9 @@
     <string name="start_long_break">开始大休息</string>
     <string name="skip_long_break">跳过大休息</string>
     <string name="skip_break">跳过休息</string>
-    <string name="cancel_notification_toast">返回</string>
+    <string name="cancel_notification_toast">取消</string>
     <string name="post">职位</string>
     <string name="post_dialog">职位：</string>
     <string name="settings">设置</string>
+    <string name="pomodoro_completion_alert_message">恭喜！这个番茄已经结束，是时候休息了。</string>
 </resources>

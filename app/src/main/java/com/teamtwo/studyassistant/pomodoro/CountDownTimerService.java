@@ -104,19 +104,16 @@ public class CountDownTimerService extends Service {
                 // 更新并检索WorkSessionCount的新值。
                 if (currentlyRunningServiceType == POMODORO) {
                     newWorkSessionCount = Utils.updateWorkSessionCount(preferences, getApplicationContext());
-                    // Getting type of break user should take, and updating type of currently running service
+                    // 获取下一步的休息类型，更新 service
                     currentlyRunningServiceType = Utils.getTypeOfBreak(preferences, getApplicationContext());
                 } else {
-                    // If last value of currentlyRunningServiceType was SHORT_BREAK or LONG_BREAK then set it back to POMODORO
+                    // 如果currentRunningServiceType的最后一个值为SHORT_BREAK或LONG_BREAK，则将其设置回POMODORO
                     currentlyRunningServiceType = POMODORO;
                 }
 
                 newWorkSessionCount = preferences.getInt(getString(R.string.work_session_count_key), 0);
                 // 如果currentRunningServiceType的最后一个值为SHORT_BREAK或LONG_BREAK，则将其设置回POMODORO
                 Utils.updateCurrentlyRunningServiceType(preferences, getApplicationContext(), currentlyRunningServiceType);
-                //
-//                soundPool.play(ringID, 0.5f, 0.5f, 1, 0, 1f);
-
                 stopSelf();
                 stoppedBroadcastIntent();
             }

@@ -40,10 +40,7 @@ public class PomodoroSettingsActivity extends AppCompatActivity implements Adapt
         initSpinner();
     }
 
-    /**
-     * Separate method to populate the spinners
-     * This will keep the onCreate() method clean
-     */
+
     private void initSpinner() {
         // Create an array adapter for all three spinners using the string array
         ArrayAdapter<CharSequence> workDurationAdapter = ArrayAdapter.createFromResource(this,
@@ -74,48 +71,37 @@ public class PomodoroSettingsActivity extends AppCompatActivity implements Adapt
     }
 
     /**
-     * Save the latest selected item position from the spinners
-     * into SharedPreferences
+     * 保存 spinners 选择的位置到 SharedPreferences
      *
-     * @param parent
-     * @param view
-     * @param position
-     * @param id
      */
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // initialize the editor
+        // 初始化
         SharedPreferences.Editor editor = preferences.edit();
-        // switch case to handle different spinners
         switch (parent.getId()) {
-            // item selected in work duration spinner
+            // pomodoro spinner 中选择项
             case R.id.work_duration_spinner:
                 Log.v(LOG_TAG, (String) parent.getItemAtPosition(position));
-                // save the corresponding item position
+                // 保存选择项当前状态
                 editor.putInt(getString(R.string.work_duration_key), position);
                 break;
-            // item selected in short break duration spinner
+            // SHORT_BREAK spinner 中选择项
             case R.id.short_break_duration_spinner:
                 Log.v(LOG_TAG, (String) parent.getItemAtPosition(position));
-                // save the corresponding item position
+                // 保存选择项当前状态
                 editor.putInt(getString(R.string.short_break_duration_key), position);
                 break;
-            // item selected in long break duration spinner
+            // LONG_BREAK spinner 中选择项
             case R.id.long_break_duration_spinner:
                 Log.v(LOG_TAG, (String) parent.getItemAtPosition(position));
-                // save the corresponding item position
+                // 保存选择项当前状态
                 editor.putInt(getString(R.string.long_break_duration_key), position);
         }
         editor.apply();
-
-        // Print the saved preferences in logs
-        Log.v(LOG_TAG, String.valueOf(preferences.getInt(getString(R.string.work_duration_key), -1)));
-        Log.v(LOG_TAG, String.valueOf(preferences.getInt(getString(R.string.short_break_duration_key), -1)));
-        Log.v(LOG_TAG, String.valueOf(preferences.getInt(getString(R.string.long_break_duration_key), -1)));
     }
 
     /**
-     * When nothing is selected from the spinner
+     * 没有在 Spinner 中选择任何东西
      *
      * @param parent
      */

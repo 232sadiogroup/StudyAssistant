@@ -19,20 +19,15 @@ import static com.teamtwo.studyassistant.pomodoro.utils.Constants.SHORT_BREAK;
 public class Utils {
 
     /**
-     * Updates value of WorkSessionCount by 1 and Writes the same to SharedPreferences.
+     * * WorkSessionCount 加一并写到 SharedPreferences
      *
-     * @param preferences Injected SharedPreferences instance from caller
-     * @param context     Injected Context from caller
-     * @return updated value of WorkSessionCount
+     * @return WorkSessionCount 更改后的值
      */
     public static int updateWorkSessionCount(SharedPreferences preferences, Context context) {
-        // Retrieving value of workSessionCount (Current value of workSessionCount) from SharedPreference.
+
         int oldWorkSessionCount = preferences.getInt(context.getString(R.string.work_session_count_key), 0);
 
-        // Updating oldWorkSessionCount by 1.
         int newWorkSessionCount = ++oldWorkSessionCount;
-
-        // Writing value of workSessionCount after a session is completed (New value of workSessionCount) in SharedPreference.
         preferences
                 .edit()
                 .putInt(context.getString(R.string.work_session_count_key), newWorkSessionCount)
@@ -42,11 +37,8 @@ public class Utils {
     }
 
     /**
-     * Returns type of break, user should take according to value of workSessionCount
+     * 返回用户应该进行休息的类型（大休息 or 短休息）
      *
-     * @param preferences Injected SharedPreferences instance from caller
-     * @param context     Injected Context from caller
-     * @return type of break, user should take
      */
     public static int getTypeOfBreak(SharedPreferences preferences, Context context) {
         int currentWorkSessionCount = preferences.getInt(context.getString(R.string.work_session_count_key), 0);
@@ -55,14 +47,6 @@ public class Utils {
         return SHORT_BREAK;
     }
 
-    /**
-     * Writes new value for currentlyRunningService in SharedPreferences.
-     * Value of currentlyRunningService determines values for textOn & textOff of ToggleButton in MainActivity.
-     *
-     * @param preferences                 Injected SharedPreferences instance from caller
-     * @param context                     Injected Context from caller
-     * @param currentlyRunningServiceType can be POMODORO, SHORT_BREAK or LONG_BREAK
-     */
     public static void updateCurrentlyRunningServiceType(SharedPreferences preferences, Context context, int currentlyRunningServiceType) {
         preferences
                 .edit()
@@ -70,29 +54,19 @@ public class Utils {
                 .apply();
     }
 
-    /**
-     * @param preferences Injected SharedPreferences instance from caller
-     * @param context     Injected Context from caller
-     * @return current value of currentlyRunningService from SharedPreferences.
-     */
     public static int retrieveCurrentlyRunningServiceType(SharedPreferences preferences, Context context) {
         return preferences.getInt(context.getString(R.string.currently_running_service_type_key), 0);
     }
 
     /**
-     * Retrieving current value of Duration for POMODORO, SHORT_BREAK and LONG_BREAK from SharedPreferences.
+     * 获取当前 POMODORO, SHORT_BREAK and LONG_BREAK 的值.
+     * 返回形式为毫秒
      *
-     * @param preferences                 Injected SharedPreferences instance from caller
-     * @param context                     Injected Context from caller
-     * @param currentlyRunningServiceType current value of currentlyRunningService (Can be POMODORO, SHORT_BREAK, or LONG_BREAK).
-     * @return duration of CountDown for a service in milliSeconds according to value of currentlyRunningServiceType.
      */
     public static long getCurrentDurationPreferenceOf(SharedPreferences preferences, Context context, int currentlyRunningServiceType) {
         if (currentlyRunningServiceType == POMODORO) {
-            // Current value of work duration stored in shared-preference
             int currentWorkDurationPreference = preferences.getInt(context.getString(R.string.work_duration_key), 1);
 
-            // Switch case to return appropriate minute value of work duration according value stored in shared-preference.
             switch (currentWorkDurationPreference) {
                 case 0:
                     //return 20 * 60000; // 20 minutes
@@ -107,10 +81,8 @@ public class Utils {
                     return 55 * 60000; // 55 minutes
             }
         } else if (currentlyRunningServiceType == SHORT_BREAK) {
-            // Current value of short-break duration stored in shared-preference
             int currentShortBreakDurationPreference = preferences.getInt(context.getString(R.string.short_break_duration_key), 1);
 
-            // Switch case to return appropriate minute value of short-break duration according value stored in shared-preference.
             switch (currentShortBreakDurationPreference) {
                 case 0:
                     return 3 * 60000; // 3 minutes
@@ -123,10 +95,8 @@ public class Utils {
                     return 15 * 60000; // 15 minutes
             }
         } else if (currentlyRunningServiceType == LONG_BREAK) {
-            // Current value of long-break duration stored in shared-preference
             int currentLongBreakDurationPreference = preferences.getInt(context.getString(R.string.long_break_duration_key), 1);
 
-            // Switch case to return appropriate minute value of long-break duration according value stored in shared-preference.
             switch (currentLongBreakDurationPreference) {
                 case 0:
                     return 10 * 60000; // 10 minutes
@@ -141,10 +111,6 @@ public class Utils {
         return 0;
     }
 
-    /**
-     * @param duration of currentlyRunningService (CountDown value) in milliSeconds
-     * @return duration in mm:ss format from duration value in milliSeconds.
-     */
     public static String getCurrentDurationPreferenceStringFor(long duration) {
         // https://stackoverflow.com/a/41589025/8411356
         return String.format(Locale.getDefault(), "%02d:%02d",

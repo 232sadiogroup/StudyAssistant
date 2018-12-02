@@ -1,8 +1,3 @@
-/*
- *  Audio Files downloaded from soundjay.com
- *  Enhanced at http://www.mp3smaller.com/ & http://www.mp3louder.com/
- */
-
 package com.teamtwo.studyassistant.Activities;
 
 import android.app.ActivityManager;
@@ -47,15 +42,10 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
 
     private static final long TIME_INTERVAL = 1000; // Time Interval is 1 second
 
-    //public static SoundPool soundPool;
-    public static int tickID, ringID;
-
     BroadcastReceiver stoppedIntentReceiver;
     BroadcastReceiver countDownReceiver;
     @BindView(R.id.settings_imageview_main)
     ImageView settingsImageView;
-    //@BindView(R.id.task_change_button_main)
-    //Button changeButton;
     @BindView(R.id.timer_button_main)
     ToggleButton timerButton;
     @BindView(R.id.countdown_textview_main)
@@ -63,17 +53,17 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
     @BindView(R.id.session_completed_value_textview_main)
     TextView workSessionCompletedTextView;
     @BindView(R.id.finish_imageview_main)
-    ImageView finishImageView; // (Complete Button)
+    ImageView finishImageView;
 
-    private int currentlyRunningServiceType; // Type of Service can be POMODORO, SHORT_BREAK or LONG_BREAK
-    private long workDuration; // Time Period for Pomodoro (Work-Session)
-    private String workDurationString; // Time Period for Pomodoro in String
-    private long shortBreakDuration; // Time Period for Short-Break
-    private String shortBreakDurationString; // Time Period for Short-Break in String
-    private long longBreakDuration; // Time Period for Long-Break
-    private String longBreakDurationString; // Time Period for Long-Break in String
+    private int currentlyRunningServiceType; // 服务的类型分为 porodoro, short break 和 long break
+    private long workDuration;
+    private String workDurationString;
+    private long shortBreakDuration;
+    private String shortBreakDurationString;
+    private long longBreakDuration;
+    private String longBreakDurationString;
     private SharedPreferences preferences;
-    private int workSessionCount = 0; // Number of Completed Work-Sessions
+    private int workSessionCount = 0;
     private AlertDialog alertDialog;
     private boolean isAppVisible = true;
 
@@ -87,33 +77,24 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
 
         ButterKnife.bind(this);
         settingsImageView.setOnClickListener(this);
-        //changeButton.setOnClickListener(this);
         timerButton.setOnClickListener(this);
         finishImageView.setOnClickListener(this);
 
-        //Preparing SoundPool to play ticking sounds
-        //soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
-        //tickID = soundPool.load(this, R.raw.clockticking, 1);
-        //ringID = soundPool.load(this, R.raw.bellringing, 2);
-
-        // Set button as checked if the service is already running.
         timerButton.setChecked(isServiceRunning(CountDownTimerService.class));
 
-        // Receives broadcast that the timer has stopped.
+        // 接收倒计时停止的 broadcast
         stoppedIntentReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 timerButton.setChecked(false);
 
-                // Setting new value of workSessionCount for workSessionCompletedTextView after a session is completed.
                 if (intent.getExtras() != null) {
                     workSessionCount = intent.getExtras().getInt("workSessionCount");
                     workSessionCompletedTextView.setText(String.valueOf(workSessionCount));
                 }
 
-                // Retrieving value of currentlyRunningServiceType from SharedPreferences.
                 currentlyRunningServiceType = Utils.retrieveCurrentlyRunningServiceType(preferences, getApplicationContext());
-                // Changing textOn & textOff according to value of currentlyRunningServiceType.
+
                 changeToggleButtonStateText(currentlyRunningServiceType);
                 unregisterLocalBroadcastReceivers();
                 alertDialog = createPomodoroCompletionAlertDialog();
@@ -122,7 +103,6 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
             }
         };
 
-        // Receives broadcast for countDown at every tick.
         countDownReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -131,21 +111,20 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
             }
         };
 
-        // Retrieving current value of Duration for POMODORO, SHORT_BREAK and LONG_BREAK from SharedPreferences.
+        // 从 sharedpreferences get Pomorodo SHORT_BREAK,LONG_BREAK 的时间
         workDuration = Utils.getCurrentDurationPreferenceOf(preferences, this, POMODORO);
         shortBreakDuration = Utils.getCurrentDurationPreferenceOf(preferences, this, SHORT_BREAK);
         longBreakDuration = Utils.getCurrentDurationPreferenceOf(preferences, this, LONG_BREAK);
 
-        // Retrieving duration in mm:ss format from duration value in milliSeconds.
+        // 将时间换算成毫秒
         workDurationString = Utils.getCurrentDurationPreferenceStringFor(workDuration);
         shortBreakDurationString = Utils.getCurrentDurationPreferenceStringFor(shortBreakDuration);
         longBreakDurationString = Utils.getCurrentDurationPreferenceStringFor(longBreakDuration);
 
-        // Changing textOn & textOff according to value of currentlyRunningServiceType.
         currentlyRunningServiceType = Utils.retrieveCurrentlyRunningServiceType(preferences, this);
         changeToggleButtonStateText(currentlyRunningServiceType);
 
-        // Retrieving value of workSessionCount (Current value of workSessionCount) from SharedPreference.
+        // 设置当前完成的 WorkSession 的数量
         workSessionCount = preferences.getInt(getString(R.string.work_session_count_key), 0);
         workSessionCompletedTextView.setText(String.valueOf(workSessionCount));
 
@@ -166,7 +145,7 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
     protected void onResume() {
         isAppVisible = true;
         registerLocalBroadcastReceivers();
-        // Creates new Alert Dialog.
+
         alertDialog = createPomodoroCompletionAlertDialog();
         displayPomodoroCompletionAlertDialog();
         super.onResume();
@@ -197,18 +176,16 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         registerLocalBroadcastReceivers();
 
-        // Retrieving value of currentlyRunningServiceType from SharedPreferences.
+        // 从 SharedPreferences 获得 currentRunningServiceType
         currentlyRunningServiceType = Utils.retrieveCurrentlyRunningServiceType(preferences, this);
 
-        // Switch case to handle different button clicks
         switch (v.getId()) {
 
-            // Settings button is clicked
+            // 点击设置按钮
             case R.id.settings_imageview_main:
-                // launch PomodoroSettingsActivity
+                // 打开 PomodoroSettingsActivity
                 Intent intent = new Intent(PomodoroActivity.this, PomodoroSettingsActivity.class);
                 startActivity(intent);
-                //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
 
 
@@ -218,21 +195,21 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
                     if (timerButton.isChecked()) {
                         startTimer(workDuration);
                     } else {
-                        // When "Cancel Pomodoro" is clicked, service is stopped and toggleButton is reset to "Start Pomodoro".
+                        // 点击停止番茄则停止服务并重置 toggleButton 状态
                         switchToPomodoro();
                     }
                 } else if (currentlyRunningServiceType == SHORT_BREAK) {
                     if (timerButton.isChecked()) {
                         startTimer(shortBreakDuration);
                     } else {
-                        // When "Skip Short Break" is clicked, service is stopped and toggleButton is reset to "Start Pomodoro".
+                        // 点击跳过休息则停止服务并重置 toggleButton 状态
                         switchToPomodoro();
                     }
                 } else if (currentlyRunningServiceType == LONG_BREAK) {
                     if (timerButton.isChecked()) {
                         startTimer(longBreakDuration);
                     } else {
-                        // When "Skip Long Break" is clicked, service is stopped and toggleButton is reset to "Start Pomodoro".
+                        // 点击跳过大休息则停止服务并重置 toggleButton 状态
                         switchToPomodoro();
                     }
                 }
@@ -240,20 +217,18 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
 
             case R.id.finish_imageview_main:
                 if (timerButton.isChecked()) {
-                    // Finish (Complete Button) stops service and sets currentlyRunningServiceType to SHORT_BREAK or LONG_BREAK and updates number of completed WorkSessions.
+                    // 完成按钮->停止服务并将 currentlyRunningServiceType 设置为 SHORT_BREAK 或 LONG_BREAK
                     if (currentlyRunningServiceType == POMODORO) {
 
-                        // Updates newWorkSessionCount in SharedPreferences and displays it on TextView.
+                        // 更新完成番茄数并显示
                         int newWorkSessionCount = Utils.updateWorkSessionCount(preferences, this);
                         workSessionCompletedTextView.setText(String.valueOf(newWorkSessionCount));
 
-                        // Retrieves type of break user should take, either SHORT_BREAK or LONG_BREAK, and updates value of currentlyRunningService in SharedPreferences.
                         currentlyRunningServiceType = Utils.getTypeOfBreak(preferences, this);
                         Utils.updateCurrentlyRunningServiceType(preferences, this, currentlyRunningServiceType);
 
                         long duration = Utils.getCurrentDurationPreferenceOf(preferences, this, currentlyRunningServiceType);
                         stopTimer(Utils.getCurrentDurationPreferenceStringFor(duration));
-                        //soundPool.play(ringID, 0.5f, 0.5f, 1, 0, 1f);
                         changeToggleButtonStateText(currentlyRunningServiceType);
                         unregisterLocalBroadcastReceivers();
                         alertDialog = createPomodoroCompletionAlertDialog();
@@ -265,12 +240,12 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+
     /**
-     * Starts service and CountDownTimer according to duration value.
-     * Duration can be initial value of either POMODORO, SHORT_BREAK or LONG_BREAK.
+     * 根据 duration 的值启动相应 service 和 CountDownTimer
      *
-     * @param duration is Time Period for which timer should tick
-     */
+     * @param duration 为倒计时时间
+     * */
     private void startTimer(long duration) {
         Intent serviceIntent = new Intent(this, CountDownTimerService.class);
         serviceIntent.putExtra("time_period", duration);
@@ -282,10 +257,9 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     * Stops service and resets CountDownTimer to initial value.
-     * Duration can be initial value of either POMODORO, SHORT_BREAK or LONG_BREAK.
+     * 停止服务并重置 CountDownTimer
      *
-     * @param duration is Time Period for which timer should tick.
+     * @param duration 为倒计时时长
      */
     private void stopTimer(String duration) {
         Intent serviceIntent = new Intent(getApplicationContext(), CountDownTimerService.class);
@@ -294,9 +268,9 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     * Changes textOn, textOff for Toggle Button & Resets CountDownTimer to initial value, according to value of currentlyRunningServiceType.
+     * 根据 currentRunningServiceType 更改「开始番茄钟」按钮文字并重置 CountDownTimer
      *
-     * @param currentlyRunningServiceType can be POMODORO, SHORT_BREAK or LONG_BREAK.
+     * @param currentlyRunningServiceType 包含 POMODORO, SHORT_BREAK 或 LONG_BREAK 类型.
      */
     private void changeToggleButtonStateText(int currentlyRunningServiceType) {
         timerButton.setChecked(isServiceRunning(CountDownTimerService.class));
@@ -314,15 +288,11 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
             countDownTextView.setText(longBreakDurationString);
         }
 
-        /*
-         https://stackoverflow.com/a/3792554/4593315
-         While changing textOn, textOff programmatically, button doesn't redraw so I used this hack.
-          */
         timerButton.setChecked(timerButton.isChecked());
     }
 
     /**
-     * Registers LocalBroadcastReceivers.
+     * Register LocalBroadcastReceivers.
      */
     private void registerLocalBroadcastReceivers() {
         LocalBroadcastManager.getInstance(this).registerReceiver((stoppedIntentReceiver),
@@ -332,7 +302,7 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     * Unregisters LocalBroadcastReceivers.
+     * Unregister LocalBroadcastReceivers.
      */
     private void unregisterLocalBroadcastReceivers() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(stoppedIntentReceiver);
@@ -340,7 +310,7 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     * Switch to Pomodoro (Work-Session) after completion of Short-Break or Long-Break.
+     * 短/长休息后换到工作状态
      */
     private void switchToPomodoro() {
         stopTimer(workDurationString);
@@ -360,10 +330,9 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     * Checks if a service is running or not.
+     * 检查服务是否运行
      *
-     * @param serviceClass name of the Service class.
-     * @return true if service is running, otherwise false.
+     * @param serviceClass Service 类名
      */
     private boolean isServiceRunning(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
@@ -378,7 +347,7 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     * Creates layout for alert-dialog, which is shown when Pomodoro (Work-Session) is completed.
+     * 设置一个番茄完成之后的对话框
      *
      * @return alert-dialog
      */
@@ -428,20 +397,14 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
         return alertDialogBuilder.create();
     }
 
-    /**
-     * Displays alert dialog when a Pomodoro (Work-Session) is finished.
-     */
+
     private void displayPomodoroCompletionAlertDialog() {
         if (currentlyRunningServiceType != POMODORO && isAppVisible && !alertDialog.isShowing() && !isServiceRunning(CountDownTimerService.class)) {
             alertDialog.show();
         }
     }
 
-    /**
-     * Sets appropriate values for medium and large button, and starts service; either SHORT_BREAK or LONG_BREAK.
-     *
-     * @param currentButtonText button text of either medium button or large button.
-     */
+
     private void startBreakFromAlertDialog(String currentButtonText) {
         long breakDuration = 0;
         if (currentButtonText.equals(getString(R.string.start_long_break))) {
@@ -462,8 +425,7 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     * Creates structure for a notification which is shown when a task is Completed.
-     * Task can be POMODORO, SHORT_BREAK, LONG_BREAK
+     * 任何一个倒计时完成则显示通知
      *
      * @return notification.
      */
@@ -487,7 +449,7 @@ public class PomodoroActivity extends AppCompatActivity implements View.OnClickL
     }
 
     /**
-     * Displays a notification when foreground service is finished.
+     * foreground service 完成则显示通知
      */
     private void displayTaskInformationNotification() {
         Notification notification = createTaskInformationNotification().build();

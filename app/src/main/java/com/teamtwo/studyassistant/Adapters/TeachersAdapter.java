@@ -22,9 +22,7 @@ import com.teamtwo.studyassistant.Utils.DbHelper;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/**
- * Created by Ulan on 08.10.2018.
- */
+
 public class TeachersAdapter extends ArrayAdapter<Teacher> {
 
     private Activity mActivity;

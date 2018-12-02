@@ -73,8 +73,6 @@
 
     <!-- Settings Activity strings -->
     <string name="sevendays_setting">Enable 7 Days of the Week</string>
-    <string name="school_website_setting">Change school website</string>
-    <string name="school_website_setting_summary">Change URL of your school website</string>
     <string name="start_time">Start Time</string>
     <string name="finish_time">Finish TIme</string>
     <string name="settings">Settings</string>
@@ -122,6 +120,6 @@
     <string name="skip_long_break">Skip Long Break</string>
     <string name="skip_break">Skip Break</string>
     <string name="currently_running_service_type_key" translatable="false">CURRENTLY_RUNNING_SERVICE_TYPE</string>
-    <string name="pomodoro_completion_alert_message" translatable="false">Congrats, Pomodoro is over.\n\nIt\'s time for a break.</string>
+    <string name="pomodoro_completion_alert_message">Congrats, Pomodoro is over.\n\nIt\'s time for a break.</string>
     <string name="cancel_notification_toast">Cancel</string>
 </resources>
