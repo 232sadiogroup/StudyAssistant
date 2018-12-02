@@ -20,9 +20,6 @@ import com.teamtwo.studyassistant.Model.Week;
 
 import java.util.ArrayList;
 
-/**
- * Created by Ulan on 06.09.2018.
- */
 public class SundayFragment extends Fragment {
 
     public static final String KEY_SUNDAY_FRAGMENT = "Sunday";

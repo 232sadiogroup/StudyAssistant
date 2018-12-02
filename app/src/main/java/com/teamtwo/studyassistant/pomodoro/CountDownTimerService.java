@@ -47,7 +47,7 @@ public class CountDownTimerService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
+        //将通信通道返回给服务。
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
@@ -71,7 +71,7 @@ public class CountDownTimerService extends Service {
 //                .addAction(R.drawable.cancel,"Cancel",cancelActionPendingIntent).setColor(Color.RED)
                 .build();
 
-        // Clearing any previous notifications.
+        // 清除之前的所有通知。
         NotificationManagerCompat
                 .from(this)
                 .cancel(TASK_INFORMATION_NOTIFICATION_ID);
@@ -82,7 +82,7 @@ public class CountDownTimerService extends Service {
     }
 
     /**
-     * @return a CountDownTimer which ticks every 1 second for given Time period.
+     * @return 每秒更新一次时间
      */
     private CountDownTimer countDownTimerBuilder(long TIME_PERIOD, long TIME_INTERVAL) {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -101,7 +101,7 @@ public class CountDownTimerService extends Service {
 
             @Override
             public void onFinish() {
-                // Updates and Retrieves new value of WorkSessionCount.
+                // 更新并检索WorkSessionCount的新值。
                 if (currentlyRunningServiceType == POMODORO) {
                     newWorkSessionCount = Utils.updateWorkSessionCount(preferences, getApplicationContext());
                     // Getting type of break user should take, and updating type of currently running service
@@ -112,9 +112,9 @@ public class CountDownTimerService extends Service {
                 }
 
                 newWorkSessionCount = preferences.getInt(getString(R.string.work_session_count_key), 0);
-                // Updating value of currentlyRunningServiceType in SharedPreferences.
+                // 如果currentRunningServiceType的最后一个值为SHORT_BREAK或LONG_BREAK，则将其设置回POMODORO
                 Utils.updateCurrentlyRunningServiceType(preferences, getApplicationContext(), currentlyRunningServiceType);
-                //Ring once ticking ends.
+                //
 //                soundPool.play(ringID, 0.5f, 0.5f, 1, 0, 1f);
 
                 stopSelf();
@@ -124,7 +124,7 @@ public class CountDownTimerService extends Service {
         return countDownTimer;
     }
 
-    // Broadcasts intent that the timer has stopped.
+    // 停止广播intent
     protected void stoppedBroadcastIntent() {
         broadcaster.sendBroadcast(
                 new Intent(STOP_ACTION_BROADCAST)

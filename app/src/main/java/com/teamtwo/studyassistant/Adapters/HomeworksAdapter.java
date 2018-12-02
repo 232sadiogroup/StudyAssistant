@@ -22,9 +22,6 @@ import com.teamtwo.studyassistant.Utils.DbHelper;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/**
- * Created by Ulan on 21.09.2018.
- */
 public class HomeworksAdapter extends ArrayAdapter<Homework> {
 
     private Activity mActivity;

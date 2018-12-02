@@ -12,9 +12,7 @@ import com.teamtwo.studyassistant.Model.Week;
 
 import java.util.ArrayList;
 
-/**
- * Created by Ulan on 07.09.2018.
- */
+
 public class DbHelper extends SQLiteOpenHelper{
 
     private static final int DB_VERSION = 4;

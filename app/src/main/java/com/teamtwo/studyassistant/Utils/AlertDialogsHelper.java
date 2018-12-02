@@ -36,9 +36,7 @@ import java.util.regex.Pattern;
 
 import petrov.kristiyan.colorpicker.ColorPicker;
 
-/**
- * Created by Ulan on 22.10.2018.
- */
+
 public class AlertDialogsHelper {
 
     public static void getEditSubjectDialog(final Activity activity, final View alertLayout, final ArrayList<Week> adapter, final ListView listView, int position) {

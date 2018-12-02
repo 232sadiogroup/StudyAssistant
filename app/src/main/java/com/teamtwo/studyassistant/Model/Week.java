@@ -1,8 +1,6 @@
 package com.teamtwo.studyassistant.Model;
 
-/**
- * Created by Ulan on 07.09.2018.
- */
+
 public class Week {
 
     private String subject, fragment, teacher, room, fromtime, totime, time;
