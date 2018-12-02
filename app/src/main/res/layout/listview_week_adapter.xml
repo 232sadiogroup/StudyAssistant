@@ -141,7 +141,7 @@
                 android:background="?selectableItemBackgroundBorderless"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintTop_toTopOf="@+id/subject"
-                card_view:srcCompat="@drawable/ic_more_vert_white_24dp" />
+                card_view:srcCompat="@drawable/ic_more_vert_black_24dp" />
 
 
         </android.support.constraint.ConstraintLayout>
