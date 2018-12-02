@@ -77,8 +77,8 @@
     <string name="settings_imageview_content_desc">设置图像</string>
     <string name="start_short_break">开始短暂休息</string>
     <string name="skip_short_break">跳过短暂休息</string>
-    <string name="start_long_break">开始大休息</string>
-    <string name="skip_long_break">跳过大休息</string>
+    <string name="start_long_break">开始长休息</string>
+    <string name="skip_long_break">跳过长休息</string>
     <string name="skip_break">跳过休息</string>
     <string name="cancel_notification_toast">返回</string>
     <string name="post">职位</string>
